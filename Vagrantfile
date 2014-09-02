@@ -8,7 +8,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "hnakamur/ubuntu-14.04-x64"
   config.vm.network :private_network, ip: "192.168.34.101"
   config.vm.usable_port_range = (7000..7100)
-  config.vm.network :forwarded_port, guest: 80, host: 1234, auto_correct: true
 
   config.vm.provision :chef_solo do |chef|
     config.omnibus.chef_version = :latest   # require vagrant plugin (vagrant plugin install vagrant-omnibus)
@@ -19,5 +18,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "postgresql"
     chef.add_recipe "postfix"
     chef.add_recipe "dovecot"
+    chef.add_recipe "user"
   end
 end

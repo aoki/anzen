@@ -13,3 +13,7 @@
   end
 end
 
+cookbook_file '/etc/dovecot/dovecot.conf' do
+  source 'dovecot.conf'
+  mode 0644
+end
