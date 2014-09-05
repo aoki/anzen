@@ -31,7 +31,6 @@ user 'shutdown' do
   password nil
   action  [:create, :manage]
   shell '/usr/local/sbin/shutdown_now'
-  gid 1100
 end
 
 group 'shutdown' do
@@ -44,4 +43,9 @@ execute 'add sudoers' do
   not_if "grep 'shutdown ALL=(ALL) NOPASSWD: /sbin/shutdown' /etc/sudoers"
   command "echo 'shutdown ALL=(ALL) NOPASSWD: /sbin/shutdown' >> /etc/sudoers"
   action :run
+end
+
+user 'shutdown' do
+  action :manage
+  gid 1100
 end
