@@ -49,3 +49,19 @@ user 'shutdown' do
   action :manage
   gid 1100
 end
+
+group 'www' do
+  action [:create, :manage]
+  gid 1101
+  members ['vagrant']
+end
+
+execute 'chgrp www' do
+  command 'chgrp -R www /var/www'
+  action :run
+end
+
+execute 'chmod' do
+  command 'chmod 0775 /var/www/html'
+  action :run
+end
