@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<a href="http://example.jp/43/43-011a.html?name=%3Cscript%3Ealert(document.cookie)%3C/script%3E">http://example.jp/43/43-011a.html?name=%3Cscript%3Ealert(document.cookie)%3C/script%3E</a><br/>
+こんにちは <span id="name"></span> さん
+
+<script src="../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  document.cookie = "foo=bar;";
+  document.URL.match(/name=([^&]*)/);
+  var name = decodeURIComponent(RegExp.$1);
+  $('#name').text(name);
+</script>
+
+</body>
+</html>
