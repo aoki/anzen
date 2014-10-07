@@ -10,3 +10,13 @@
 package 'postgresql' do
   action :install
 end
+
+cookbook_file "wasbook.sql" do
+  path "/tmp/wasbook.sql"
+  action :create
+end
+
+execute 'create db' do
+  user    'postgres'
+  command 'psql -U postgres wasbook < /tmp/wasbook.sql'
+end
